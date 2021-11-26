@@ -14,14 +14,16 @@ using System.Collections.Generic;
  */
 public class Solution {
     public IList<int> PreorderTraversal(TreeNode root) {
-        var ans = new List<int>();
-        AddValue(root, ans);
-        return ans;
+        return AddValue(root, new List<int>());
     }
-    static void AddValue(TreeNode root, IList<int> ans) {
+    public List<int> AddValue(TreeNode root, List<int> ans) {
+        if (root == null)
+        {
+            return ans;
+        }
         ans.Add(root.val);
-        AddValue(root.left);
-        AddValue(root.right);
-        return;
+        ans = AddValue(root.left, ans);
+        ans = AddValue(root.right, ans);
+        return ans;
     }
 }
